@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import rolePlayImg from '@/public/features/roleplay.png';
 import pronunciationImg from '@/public/features/pronunciation.png';
 import chatImg from '@/public/features/chat.png';
@@ -10,129 +10,7 @@ export default function Features() {
   const [isMobile, setIsMobile] = useState(false);
   const featuresRef = useRef<HTMLDivElement>(null);
   
-  const features = [
-    {
-      id: 1,
-      title: "Chat",
-      subtitle: "Natural conversations",
-      description: "Develop your English skills by chatting with our AI teacher.",
-      image: chatImg,
-      alt: "Chat feature illustration",
-      gradient: "from-blue-400 to-indigo-500",
-      animationType: "horizontal-left-to-right"
-    },
-    {
-      id: 2,
-      title: "Roleplay",
-      subtitle: "Real-world scenarios",
-      description: "Practice real-life English through practical, everyday scenarios.",
-      image: rolePlayImg,
-      alt: "Roleplay feature illustration",
-      gradient: "from-purple-400 to-pink-500",
-      animationType: "vertical-bottom-to-top"
-    },
-    {
-      id: 3,
-      title: "Pronunciation",
-      subtitle: "Speak with Confidence",
-      description: "Enhance your speech with practice and detailed audio insights.",
-      image: pronunciationImg,
-      alt: "Pronunciation feature illustration",
-      gradient: "from-green-400 to-teal-500",
-      animationType: "horizontal-right-to-left"
-    }
-  ];
-
-  useEffect(() => {
-    // Check if we're on mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    // Initial check
-    checkMobile();
-    
-    // Add resize listener
-    window.addEventListener('resize', checkMobile);
-    
-    // Setup desktop hover animations
-    const featureGroups = document.querySelectorAll('.feature-group');
-    
-    featureGroups.forEach(group => {
-      group.addEventListener('mouseenter', handleGroupMouseEnter);
-      group.addEventListener('mouseleave', handleGroupMouseLeave);
-    });
-    
-    // Setup Intersection Observer for mobile scroll animations
-    if (typeof IntersectionObserver !== 'undefined') {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5, // Trigger when 50% visible
-      };
-      
-      const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && isMobile) {
-            // Add animated class to trigger animations
-            const featureGroup = entry.target as HTMLElement;
-            
-            // Only add the class if it's not already animated
-            if (!featureGroup.classList.contains('animated')) {
-              featureGroup.classList.add('animated');
-              
-              // Trigger image animation once
-              const imageLayer = featureGroup.querySelector('.image-layer') as HTMLElement;
-              const featureBox = featureGroup.querySelector('.feature-box') as HTMLElement;
-              const animationType = featureBox.getAttribute('data-animation-type');
-              
-              if (imageLayer) {
-                // Move directly to the final position without initial opposite movement
-                switch (animationType) {
-                  case "horizontal-left-to-right":
-                    // For left-to-right, we move directly to the right
-                    imageLayer.style.transform = 'translateX(30px)';
-                    break;
-                  case "vertical-bottom-to-top":
-                    // For bottom-to-top, we move directly to the top
-                    imageLayer.style.transform = 'translateY(-30px)';
-                    break;
-                  case "horizontal-right-to-left":
-                    // For right-to-left, we move directly to the left
-                    imageLayer.style.transform = 'translateX(-30px)';
-                    break;
-                  default:
-                    imageLayer.style.transform = 'translateX(30px)';
-                }
-              }
-            }
-          } else if (!entry.isIntersecting && isMobile) {
-            // We don't remove the animated class when scrolling away
-            // This allows the animation to stay in its final state
-          }
-        });
-      };
-      
-      const observer = new IntersectionObserver(handleIntersection, observerOptions);
-      
-      featureGroups.forEach(group => {
-        observer.observe(group);
-      });
-    }
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      
-      featureGroups.forEach(group => {
-        group.removeEventListener('mouseenter', handleGroupMouseEnter);
-        group.removeEventListener('mouseleave', handleGroupMouseLeave);
-      });
-    };
-  }, [isMobile]);
-
-  const handleGroupMouseEnter = (e: Event) => {
-    if (isMobile) return; // Skip on mobile
-    
+  const handleGroupMouseEnter = useRef((e: Event) => {
     const group = e.currentTarget as HTMLElement;
     const featureBox = group.querySelector('.feature-box') as HTMLElement;
     const imageLayer = group.querySelector('.image-layer') as HTMLElement;
@@ -168,17 +46,133 @@ export default function Features() {
           }, 50);
       }
     }
-  };
+  }).current;
 
-  const handleGroupMouseLeave = (e: Event) => {
-    if (isMobile) return; // Skip on mobile
-    
+  const handleGroupMouseLeave = useRef((e: Event) => {
     const group = e.currentTarget as HTMLElement;
     const imageLayer = group.querySelector('.image-layer') as HTMLElement;
     if (imageLayer) {
       imageLayer.style.transform = 'translateX(0) translateY(0)';
     }
-  };
+  }).current;
+  
+  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && isMobile) {
+        const featureGroup = entry.target as HTMLElement;
+        
+        if (!featureGroup.classList.contains('animated')) {
+          featureGroup.classList.add('animated');
+          
+          const imageLayer = featureGroup.querySelector('.image-layer') as HTMLElement;
+          const featureBox = featureGroup.querySelector('.feature-box') as HTMLElement;
+          const animationType = featureBox.getAttribute('data-animation-type');
+          
+          if (imageLayer) {
+            switch (animationType) {
+              case "horizontal-left-to-right":
+                imageLayer.style.transform = 'translateX(30px)';
+                break;
+              case "vertical-bottom-to-top":
+                imageLayer.style.transform = 'translateY(-30px)';
+                break;
+              case "horizontal-right-to-left":
+                imageLayer.style.transform = 'translateX(-30px)';
+                break;
+              default:
+                imageLayer.style.transform = 'translateX(30px)';
+            }
+          }
+        }
+      }
+      // We don't remove the animated class when scrolling away
+    });
+  }, [isMobile]);
+  
+  const handleMouseEnter = useCallback((e: Event) => {
+    if (!isMobile) {
+      handleGroupMouseEnter(e);
+    }
+  }, [isMobile, handleGroupMouseEnter]);
+  
+  const handleMouseLeave = useCallback((e: Event) => {
+    if (!isMobile) {
+      handleGroupMouseLeave(e);
+    }
+  }, [isMobile, handleGroupMouseLeave]);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    
+    window.addEventListener('resize', checkMobile);
+    
+    const featureGroups = document.querySelectorAll('.feature-group');
+    
+    featureGroups.forEach(group => {
+      group.addEventListener('mouseenter', handleMouseEnter);
+      group.addEventListener('mouseleave', handleMouseLeave);
+    });
+    
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 1,
+      };
+      
+      const observer = new IntersectionObserver(handleIntersection, observerOptions);
+      
+      featureGroups.forEach(group => {
+        observer.observe(group);
+      });
+    }
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      
+      featureGroups.forEach(group => {
+        group.removeEventListener('mouseenter', handleMouseEnter);
+        group.removeEventListener('mouseleave', handleMouseLeave);
+      });
+    };
+  }, [isMobile, handleIntersection, handleMouseEnter, handleMouseLeave]);
+  
+  const features = [
+    {
+      id: 1,
+      title: "Chat",
+      subtitle: "Natural conversations",
+      description: "Develop your English skills by chatting with our AI teacher.",
+      image: chatImg,
+      alt: "Chat feature illustration",
+      gradient: "from-blue-400 to-indigo-500",
+      animationType: "horizontal-left-to-right"
+    },
+    {
+      id: 2,
+      title: "Roleplay",
+      subtitle: "Real-world scenarios",
+      description: "Practice real-life English through practical, everyday scenarios.",
+      image: rolePlayImg,
+      alt: "Roleplay feature illustration",
+      gradient: "from-purple-400 to-pink-500",
+      animationType: "vertical-bottom-to-top"
+    },
+    {
+      id: 3,
+      title: "Pronunciation",
+      subtitle: "Speak with Confidence",
+      description: "Enhance your speech with practice and detailed audio insights.",
+      image: pronunciationImg,
+      alt: "Pronunciation feature illustration",
+      gradient: "from-green-400 to-teal-500",
+      animationType: "horizontal-right-to-left"
+    }
+  ];
 
   return (
     <div className="bg-white py-20 px-8" ref={featuresRef}>
