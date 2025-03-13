@@ -37,20 +37,6 @@ code, pre {
   margin-bottom: 0;
 }
 
-/* Remove the animations that cause continuous looping */
-/* .feature-group.animated .image-layer {
-  animation: bounce-horizontal 3s infinite ease-in-out;
-}
-
-.feature-group:nth-child(2).animated .image-layer {
-  animation: bounce-vertical 3s infinite ease-in-out;
-}
-
-.feature-group:nth-child(3).animated .image-layer {
-  animation: bounce-horizontal-reverse 3s infinite ease-in-out;
-} */
-
-/* We're handling the animations with JavaScript now, so these aren't needed */
 @keyframes bounce-horizontal {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(30px); }
@@ -67,38 +53,22 @@ code, pre {
 }
 
 @media (max-width: 767px) {
-  /* Make sure text elements show up when animated class is added */
   .feature-group.animated p.text-sm {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
   
-  /* Make sure description shows up */
   .feature-group.animated .mt-8 {
     opacity: 1 !important;
   }
   
-  /* Make subtitle container fully visible */
   .feature-group.animated div.opacity-0 {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
   
-  /* Make sure the 45-degree slash animation works on mobile */
   .feature-group.animated .absolute.w-full.h-full {
     opacity: 0.2 !important;
     transform: rotate(45deg) translateX(100%) translateY(100%) !important;
   }
 }
-
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
