@@ -2,7 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+code, pre {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.feature-circle {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.parallax-layer {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+}
+
+.feature-group.animated .feature-box {
+  transform: scale(1.1);
+}
+
+.feature-group.animated h3 {
+  transform: translateY(-1rem);
+  margin-bottom: 0;
+}
+
+/* Remove the animations that cause continuous looping */
+/* .feature-group.animated .image-layer {
+  animation: bounce-horizontal 3s infinite ease-in-out;
+}
+
+.feature-group:nth-child(2).animated .image-layer {
+  animation: bounce-vertical 3s infinite ease-in-out;
+}
+
+.feature-group:nth-child(3).animated .image-layer {
+  animation: bounce-horizontal-reverse 3s infinite ease-in-out;
+} */
+
+/* We're handling the animations with JavaScript now, so these aren't needed */
+@keyframes bounce-horizontal {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+@keyframes bounce-vertical {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@keyframes bounce-horizontal-reverse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-30px); }
+}
+
+@media (max-width: 767px) {
+  /* Make sure text elements show up when animated class is added */
+  .feature-group.animated p.text-sm {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Make sure description shows up */
+  .feature-group.animated .mt-8 {
+    opacity: 1 !important;
+  }
+  
+  /* Make subtitle container fully visible */
+  .feature-group.animated div.opacity-0 {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Make sure the 45-degree slash animation works on mobile */
+  .feature-group.animated .absolute.w-full.h-full {
+    opacity: 0.2 !important;
+    transform: rotate(45deg) translateX(100%) translateY(100%) !important;
+  }
+}
+
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -12,10 +101,4 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+} */
