@@ -9,8 +9,8 @@ import PhoneScreenImg from '@/public/download/phone_screen.png'
 export default function Download() {
   return (
     <div className="bg-white py-8 px-4 md:py-24 md:px-8">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        <div className="w-full md:w-2/3 md:ml-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:mr-8 items-center">
+        <div className="w-full md:w-3/5 md:ml-6 ">
           <h2 className="text-3xl lg:text-4xl font-bold mb-6">
             Learn a Language With AI 5x Faster
           </h2>
@@ -51,16 +51,16 @@ export default function Download() {
           </div>
         </div>
         
-        <div className="w-full md:w-1/3 relative h-96 flex items-center justify-center">
-          <div className="absolute bottom-0 w-64 h-64 md:w- lg:h-76 lg:h-76 rounded-full bg-blue-600 z-0"></div>
+        <div className="w-full md:w-1/5 relative h-80 md:h-96 flex items-center justify-center md:ml-24">
+          <div className="absolute bottom-0 w-48 h-48 md:w-56 md:h-56 lg:h-76 lg:h-76 rounded-full bg-blue-600 z-0"></div>
           
-          <div className="absolute z-10 transform -translate-y-6">
+          <div className="absolute z-10 transform ">
             <Image 
               src={PhoneScreenImg}
               alt="TalkMate App" 
-              width={280}
-              height={560}
-              className="w-40 drop-shadow-xl"
+              width={240}
+              height={240}
+              className="w-28 md:w-32 drop-shadow-xl translate-y-6"
               priority
             />
           </div>
