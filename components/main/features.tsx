@@ -181,7 +181,7 @@ export default function Features() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {features.map((feature) => (
           <div key={feature.id} className="feature-group mt-12 md:mt-0 flex flex-col items-center justify-center relative group">
-            <h3 className="text-2xl font-bold text-gray-800 transition-all duration-300 mb-[-2rem] group-hover:-translate-y-4 md:group-hover:mb-0 animated:-translate-y-4 animated:mb-0">
+            <h3 className="text-2xl font-bold text-gray-800 transition-all duration-300 mb-[-2rem] group-hover:-translate-y-4 md:group-hover:-translate-y-4 md:group-hover:mb-0 animated:-translate-y-4 animated:mb-0">
               {feature.title}
             </h3>
             
@@ -190,12 +190,12 @@ export default function Features() {
             </div>
             
             <div 
-              className="feature-box w-64 h-64 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-3xl bg-gradient-to-r overflow-hidden relative cursor-pointer group-hover:scale-110 animated:scale-110 transition-all duration-300 flex flex-col justify-between mt-8"
+              className="feature-box w-64 h-64 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-3xl bg-gradient-to-r overflow-hidden relative cursor-pointer group-hover:scale-110 md:group-hover:scale-110 animated:scale-110 transition-all duration-300 flex flex-col justify-between mt-8"
               data-animation-type={feature.animationType}
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient}`}></div>
               
-              <div className="absolute w-full h-full opacity-0 group-hover:opacity-20 animated:opacity-20 bg-white transform rotate-45 -translate-x-full -translate-y-1/4 group-hover:translate-x-full group-hover:translate-y-full animated:translate-x-full animated:translate-y-full transition-all duration-1000"></div>
+              <div className="absolute w-full h-full opacity-0 group-hover:opacity-20 md:group-hover:opacity-20 animated:opacity-20 bg-white transform rotate-45 -translate-x-full -translate-y-1/4 group-hover:translate-x-full group-hover:translate-y-full md:group-hover:translate-x-full md:group-hover:translate-y-full animated:translate-x-full animated:translate-y-full transition-all duration-1000"></div>
               
               <div className="image-layer w-full absolute bottom-0 left-0 transition-transform duration-700 ease-in-out z-10">
                 <div className="flex justify-center items-end h-full">
@@ -204,13 +204,13 @@ export default function Features() {
                     alt={feature.alt}
                     width={170}
                     height={170}
-                    className="object-contain md:w-36 lg:w-40 transform group-hover:scale-110 animated:scale-110 transition-all duration-500"
+                    className="object-contain md:w-36 lg:w-40 transform group-hover:scale-110 md:group-hover:scale-110 animated:scale-110 transition-all duration-500"
                   />
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 text-center opacity-0 group-hover:opacity-100 animated:opacity-100 transition-all duration-500 delay-100">
+            <div className="mt-8 text-center opacity-0 group-hover:opacity-100 md:group-hover:opacity-100 animated:opacity-100 transition-all duration-500 delay-100">
               <p className="text-gray-600">{feature.description}</p>
             </div>
           </div>

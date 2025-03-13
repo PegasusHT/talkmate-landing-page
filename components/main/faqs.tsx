@@ -76,7 +76,7 @@ export default function FAQs() {
   ];
   
   return (
-    <div className="bg-white py-12 px-4 md:px-8">
+    <div className="bg-white pt-12 pb-4 px-4 md:px-8">
       <div className="max-w-4xl md:ml-8">
         <h2 className="text-2xl md:text-4xl font-bold mb-6 ml-2 md:mb-12">Frequently Asked Questions</h2>
         
