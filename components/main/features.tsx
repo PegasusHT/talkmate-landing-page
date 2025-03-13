@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import rolePlayImg from '@/public/features/roleplay.png';
-import pronunciationImg from '@/public/features/pronunciation.png';
-import chatImg from '@/public/features/chat.png';
+import rolePlayImg from '@/public/pics/features/roleplay.png';
+import pronunciationImg from '@/public/pics/features/pronunciation.png';
+import chatImg from '@/public/pics/features/chat.png';
 
 export default function Features() {
   const [isMobile, setIsMobile] = useState(false);

@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import DownloadBtnImg from '@/public/download/download_btn.webp'
-import PhoneScreenImg from '@/public/download/phone_screen.png'
+import DownloadBtnImg from '@/public/pics/download/download_btn.webp'
+import PhoneScreenImg from '@/public/pics/download/phone_screen.png'
 
 export default function Download() {
   return (

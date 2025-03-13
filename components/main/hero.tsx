@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import heroImage from '@/public/hero.png';
-import bgLayer1 from '@/public/bg1.jpeg';
-import logo from '@/public/logo.png';
+import heroImage from '@/public/pics/hero.png';
+import bgLayer1 from '@/public/pics/bg1.jpeg';
+import logo from '@/public/pics/logo.png';
 
 export default function Hero() {
   useEffect(() => {
