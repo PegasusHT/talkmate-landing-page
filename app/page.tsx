@@ -1,3 +1,4 @@
+//app/page.tsx
 import Hero from "@/components/main/hero";
 import Features from "@/components/main/features";
 import FAQs from "@/components/main/faqs";
@@ -6,12 +7,12 @@ import Footer from "@/components/footer/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className="pt-16">
       <Hero />
       <Features />
       <FAQs />
       <Download />
-      
+
       <Footer />
     </div>
   );

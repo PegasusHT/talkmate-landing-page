@@ -1,8 +1,10 @@
+//components/footer/Footer.tsx
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { 
   FaInstagram, 
   FaFacebookF, 
@@ -14,8 +16,16 @@ import DownloadBtnImg from '@/public/pics/download/download_btn.webp';
 import urls from '@/public/constants/links';
 
 const { FACEBOOK_URL, INSTAGRAM_URL, TWITTER_URL, YOUTUBE_URL, TIKTOK_URL } = urls.SOCIAL_MEDIA; 
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  
+  const isActiveLink = (href: string) => {
+    if (href === '/' && pathname === '/') return true;
+    if (href !== '/' && pathname.startsWith(href)) return true;
+    return false;
+  };
   
   return (
     <footer className="bg-gray-100 pt-12 pb-6">
@@ -24,11 +34,66 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-4">TalkMate</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors">About</Link></li>
-              <li><Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors">Blog</Link></li>
-              <li><Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</Link></li>
-              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="text-gray-600 hover:text-blue-600 transition-colors">Terms and Conditions</Link></li>
+              <li>
+                <Link 
+                  href="/" 
+                  className={`transition-colors ${isActiveLink('/') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/about" 
+                  className={`transition-colors ${isActiveLink('/about') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/blog" 
+                  className={`transition-colors ${isActiveLink('/blog') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/contact" 
+                  className={`transition-colors ${isActiveLink('/contact') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/privacy-policy" 
+                  className={`transition-colors ${isActiveLink('/privacy-policy') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/terms" 
+                  className={`transition-colors ${isActiveLink('/terms') 
+                    ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
+                    : 'text-gray-600 hover:text-blue-600'}`}
+                >
+                  Terms and Conditions
+                </Link>
+              </li>
             </ul>
           </div>
           
