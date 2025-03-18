@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import DownloadBtnImg from '@/public/pics/download/download_btn.webp'
 import PhoneScreenImg from '@/public/pics/download/phone_screen.png'
+import QRImg from '@/public/pics/download/qr.png';
 
 export default function Download() {
   return (
@@ -24,7 +25,7 @@ export default function Download() {
           
           <div className="flex justify-center space-x-12 mb-8">
             <Image 
-              src="/download/qr.png" 
+              src={QRImg} 
               alt="TalkMate QR Code" 
               width={120} 
               height={120}
