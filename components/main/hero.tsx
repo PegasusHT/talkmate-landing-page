@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import heroImage from '@/public/pics/hero.png';
@@ -8,6 +8,16 @@ import bgLayer1 from '@/public/pics/bg1.jpeg';
 import logo from '@/public/pics/logo.png';
 
 export default function Hero() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       requestAnimationFrame(() => {
@@ -40,15 +50,25 @@ export default function Hero() {
         >
           <div className="absolute inset-0 -rotate-6"></div>
         </div>
+        
         <div 
           data-type="parallax-fg"
-          className="absolute bottom-0 right-10 transition-transform duration-100 ease-out will-change-transform"
+          className={`
+            absolute 
+            bottom-0 
+            right-10 
+            will-change-transform
+            transition-transform 
+            duration-700 
+            ease-out 
+            ${isLoaded ? 'translate-y-0' : 'translate-y-full'}
+          `}
         >
           <div className="">
             <Image 
               src={heroImage}
               alt="Hero Image" 
-              className=" md:mr-16 lg:mr-28 mb-[-1rem] opacity-95
+              className="md:mr-16 lg:mr-28 mb-[-1rem] opacity-95
                 w-52 md:w-64 lg:w-76"
               width={240} height={180}
             />
