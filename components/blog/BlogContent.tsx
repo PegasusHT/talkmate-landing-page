@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaCalendarAlt, FaUser, FaTag } from 'react-icons/fa';
-import heroPic from '@/public/pics/blog/thinking_boy.jpg'
+import heroPic from '@/public/pics/blog/thinking_boy.jpg';
 
 export default function BlogContent() {
   return (
@@ -21,14 +21,18 @@ export default function BlogContent() {
       <div className="py-8 md:py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <article className="bg-white rounded-2xl shadow-md overflow-hidden">
-            <div className="relative h-72 md:h-96 w-full">
+            <div className="relative h-72 md:h-96 w-full bg-blue-100">
               <Image 
                 src={heroPic}
                 alt="Person practicing English speaking" 
                 fill
-                style={{ objectFit: 'cover' }}
-                className="bg-blue-100"
-                priority
+                sizes="(max-width: 768px) 100vw, 800px"
+                placeholder="blur"
+                priority={true}
+                style={{ 
+                  objectFit: 'cover',
+                  objectPosition: 'center'
+                }}
               />
             </div>
             
