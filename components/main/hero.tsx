@@ -6,6 +6,7 @@ import Image from 'next/image';
 import heroImage from '@/public/pics/hero.png';
 import bgLayer1 from '@/public/pics/bg1.jpeg';
 import logo from '@/public/pics/logo.png';
+import Link from 'next/link';
 
 export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -91,10 +92,19 @@ export default function Hero() {
           <p className="text-xl text-gray-200 mb-8">
             Practice conversations with AI-powered language partners
           </p>
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-full flex items-center gap-2 mx-auto hover:bg-blue-700 hover:scale-105 transition-all duration-300">
-            Start Speaking Now
-            <ChevronRight />
-          </button>
+          <Link 
+              href="https://apps.apple.com/vn/app/talkmate-ai-english-learning/id6736656529" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-transform hover:scale-105"
+          >
+            <button
+            className="px-6 py-3 bg-blue-600 text-white rounded-full flex items-center gap-2 mx-auto hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+              
+              Start Speaking Now
+              <ChevronRight />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
