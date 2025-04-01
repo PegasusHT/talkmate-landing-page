@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TalkMate Landing Page
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This repository contains the landing page for TalkMate, an AI-powered language learning application that helps users practice conversations with AI language partners. The landing page is built with Next.js and showcases the app's key features, benefits, and download options.
+
+## About TalkMate
+
+TalkMate is a mobile application designed to accelerate language learning through AI-driven conversation practice. The app focuses on helping users improve their language skills by:
+
+- Engaging in natural conversations with AI teachers
+- Practicing real-world scenarios through roleplay exercises
+- Improving pronunciation with detailed audio feedback
+
+Users can learn languages up to 5x faster with TalkMate's innovative approach, practicing by either writing or speaking with realistic voice responses across unlimited conversation topics.
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) - React framework for web development
+- TypeScript - For type-safe code
+- Tailwind CSS - For responsive styling
+- Vercel Analytics - For performance monitoring
+
+## Development
+
+### Getting Started
+
+1. Clone this repository
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` - Next.js app router and page components
+- `components/` - Reusable UI components
+- `public/` - Static assets and images
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The site is optimized for deployment on [Vercel](https://vercel.com), the platform from the creators of Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [App Store Download](https://apps.apple.com/vn/app/talkmate-ai-english-learning/id6736656529)
